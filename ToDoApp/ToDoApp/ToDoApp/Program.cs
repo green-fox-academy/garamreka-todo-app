@@ -50,14 +50,14 @@ namespace ToDoApp
                 {
                     try
                     {
-                        using (StreamWriter writer = new StreamWriter(@"../../Todolist.txt"))
+                        using (StreamWriter writer = File.AppendText(@"../../Todolist.txt"))
                         {
                             writer.WriteLine(args[1]);
                         }
                     }
                     catch
                     {
-                        Console.WriteLine("Unable to ad task.");
+                        Console.WriteLine("Unable to add task.");
                     }
                 }
                 else
