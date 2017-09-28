@@ -1,2 +1,3 @@
-﻿Feed the dog
-Feed the monkey
+Buy chocolate;todo
+Buy more chocolate;todo
+Refactor my code;todos

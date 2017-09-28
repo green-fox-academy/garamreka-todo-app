@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ToDoApp
 {
@@ -15,58 +13,124 @@ namespace ToDoApp
 
             if (args.Length == 0)
             {
-                Console.WriteLine("Command Line Todo application"
+                UsageInfo();
+            }
+            else if (args.Contains("-l"))
+            {
+                ListTasks();
+            }
+            else if (args.Contains("-a"))
+            {
+                AddNewTask(args);
+            }
+            else if (args.Contains("-r"))
+            {
+                RemoveTask(args);
+            }
+            else if (args.Contains("-c"))
+            {
+                CheckTask(args);
+            }
+        }
+        public static void UsageInfo()
+        {
+            Console.WriteLine("Command Line Todo application"
                 + "\n=============================\n"
                 + "\nCommand line arguments:"
                 + "\n-l   Lists all the tasks"
                 + "\n-a   Adds a new task"
                 + "\n-r   Removes a task"
                 + "\n-c   Completes a task");
+        }
+        public static void ListTasks()
+        {
+            try
+            {
+                string[] contentOfTodoList = File.ReadAllLines(@"../../Todolist.txt");
+
+                if (contentOfTodoList.Length == 0)
+                {
+                    Console.WriteLine("No todos for today! :)");
+                }
+
+                for (int i = 0; i < contentOfTodoList.Length; i++)
+                {
+                    string[] oneLineOfTodoList = contentOfTodoList[i].Split(';');
+                    if (oneLineOfTodoList[1] == "done")
+                    {
+                        Console.WriteLine((i + 1) + " - [x] " + oneLineOfTodoList[0]);
+                    }
+                    else
+                    {
+                        Console.WriteLine((i + 1) + " - [ ] " + oneLineOfTodoList[0]);
+                    }
+                }
             }
-            else if (args.Contains("-l"))
+            catch
+            {
+                Console.WriteLine("Unable to read file.");
+            }
+        }
+        public static void AddNewTask(string[] args)
+        {
+            if (args.Length == 2)
+            {
+                using (StreamWriter writer = File.AppendText(@"../../Todolist.txt"))
+                {
+                    writer.WriteLine(args[1] + ";todo");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Unable to add: no task provided");
+            }
+        }
+        public static void RemoveTask(string[] args)
+        {
+            if (args.Length == 2)
+            {
+                try
+                {
+
+                }
+                catch
+                {
+                    Console.WriteLine("Unable to remove");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Unable to remove: no index provided");
+            }
+        }
+        public static void CheckTask(string[] args)
+        {
+            if (args.Length == 2)
             {
                 try
                 {
                     string[] contentOfTodoList = File.ReadAllLines(@"../../Todolist.txt");
+                    int indexOfLine = int.Parse(args[1]);
 
-                    if (contentOfTodoList.Length == 0)
+                    using (StreamWriter writer = new StreamWriter(@"../../Todolist.txt"))
                     {
-                        Console.WriteLine("No todos for today! :)");
-                    }
+                        contentOfTodoList[indexOfLine - 1].Replace("todo", "done");
 
-                    for (int i = 0; i < contentOfTodoList.Length; i++)
-                    {
-                        Console.WriteLine((i + 1) + " - " + contentOfTodoList[i]);
+                        for (int i = 0; i < contentOfTodoList.Length; i++)
+                        {
+                            writer.WriteLine(contentOfTodoList[i]);
+                        }
                     }
                 }
                 catch
                 {
-                    Console.WriteLine("Unable to read file.");
+                    Console.WriteLine("Unable to check");
                 }
             }
-            else if (args.Contains("-a"))
+            else
             {
-                if (args.Length == 2)
-                {
-                    try
-                    {
-                        using (StreamWriter writer = File.AppendText(@"../../Todolist.txt"))
-                        {
-                            writer.WriteLine(args[1]);
-                        }
-                    }
-                    catch
-                    {
-                        Console.WriteLine("Unable to add task.");
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Unable to add: no task provided");
-                }
-                
+                Console.WriteLine("Unable to check: no index provided");
             }
-            //Console.ReadLine();
         }
     }
 }
