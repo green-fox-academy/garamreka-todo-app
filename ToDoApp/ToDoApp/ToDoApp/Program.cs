@@ -12,6 +12,7 @@ namespace ToDoApp
         static void Main(string[] args)
         {
             Console.WriteLine("\n");
+
             if (args.Length == 0)
             {
                 Console.WriteLine("Command Line Todo application"
@@ -26,16 +27,16 @@ namespace ToDoApp
             {
                 try
                 {
-                    string[] content = File.ReadAllLines("Todolist.txt");
+                    string[] contentOfTodoList = File.ReadAllLines(@"../../Todolist.txt");
 
-                    if (content.Length == 0)
+                    if (contentOfTodoList.Length == 0)
                     {
                         Console.WriteLine("No todos for today! :)");
                     }
 
-                    for (int i = 0; i < content.Length; i++)
+                    for (int i = 0; i < contentOfTodoList.Length; i++)
                     {
-                        Console.WriteLine((i + 1) + " - " + content[i]);
+                        Console.WriteLine((i + 1) + " - " + contentOfTodoList[i]);
                     }
                 }
                 catch
@@ -43,7 +44,29 @@ namespace ToDoApp
                     Console.WriteLine("Unable to read file.");
                 }
             }
-            Console.ReadLine();
+            else if (args.Contains("-a"))
+            {
+                if (args.Length == 2)
+                {
+                    try
+                    {
+                        using (StreamWriter writer = new StreamWriter(@"../../Todolist.txt"))
+                        {
+                            writer.WriteLine(args[1]);
+                        }
+                    }
+                    catch
+                    {
+                        Console.WriteLine("Unable to ad task.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Unable to add: no task provided");
+                }
+                
+            }
+            //Console.ReadLine();
         }
     }
 }
