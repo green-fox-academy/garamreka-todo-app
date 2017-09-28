@@ -114,11 +114,18 @@ namespace ToDoApp
 
                     using (StreamWriter writer = new StreamWriter(@"../../Todolist.txt"))
                     {
-                        contentOfTodoList[indexOfLine - 1].Replace("todo", "done");
+                        
 
                         for (int i = 0; i < contentOfTodoList.Length; i++)
                         {
-                            writer.WriteLine(contentOfTodoList[i]);
+                            if (i == indexOfLine -1)
+                            {
+                                writer.WriteLine(contentOfTodoList[i].Replace("todo", "done"));
+                            }
+                            else
+                            {
+                                writer.WriteLine(contentOfTodoList[i]);
+                            }
                         }
                     }
                 }
