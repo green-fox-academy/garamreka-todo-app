@@ -11,9 +11,10 @@ namespace ToDoApp
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("\n");
             if (args.Length == 0)
             {
-                Console.WriteLine("\nCommand Line Todo application"
+                Console.WriteLine("Command Line Todo application"
                 + "\n=============================\n"
                 + "\nCommand line arguments:"
                 + "\n-l   Lists all the tasks"
@@ -21,13 +22,16 @@ namespace ToDoApp
                 + "\n-r   Removes a task"
                 + "\n-c   Completes a task");
             }
-            if (args.Contains("-l"))
+            else if (args.Contains("-l"))
             {
-                //string path = @"./todolist.txt";
-
                 try
                 {
                     string[] content = File.ReadAllLines("Todolist.txt");
+
+                    if (content.Length == 0)
+                    {
+                        Console.WriteLine("No todos for today! :)");
+                    }
 
                     for (int i = 0; i < content.Length; i++)
                     {
