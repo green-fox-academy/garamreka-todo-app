@@ -36,6 +36,5 @@ namespace ToDoApp
                 Console.WriteLine("Unable to read file.");
             }
         }
-
     }
 }
