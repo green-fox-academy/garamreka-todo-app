@@ -1,3 +1,3 @@
-Buy chocolate;todo
+Buy chocolate;done
 Buy more chocolate;done
 Refactor my code;todos

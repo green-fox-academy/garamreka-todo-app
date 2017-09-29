@@ -5,10 +5,12 @@ using System.Linq;
 
 namespace ToDoApp
 {
-    class Program
+    class TodoApp
     {
         static void Main(string[] args)
         {
+            List_Tasks listTasks = new List_Tasks();
+            
             Console.WriteLine("\n");
 
             if (args.Length == 0)
@@ -17,7 +19,7 @@ namespace ToDoApp
             }
             else if (args.Contains("-l"))
             {
-                ListTasks();
+                listTasks.ListTasks();
             }
             else if (args.Contains("-a"))
             {
@@ -42,35 +44,7 @@ namespace ToDoApp
                 + "\n-r   Removes a task"
                 + "\n-c   Completes a task");
         }
-        public static void ListTasks()
-        {
-            try
-            {
-                string[] contentOfTodoList = File.ReadAllLines(@"../../Todolist.txt");
-
-                if (contentOfTodoList.Length == 0)
-                {
-                    Console.WriteLine("No todos for today! :)");
-                }
-
-                for (int i = 0; i < contentOfTodoList.Length; i++)
-                {
-                    string[] oneLineOfTodoList = contentOfTodoList[i].Split(';');
-                    if (oneLineOfTodoList[1] == "done")
-                    {
-                        Console.WriteLine((i + 1) + " - [x] " + oneLineOfTodoList[0]);
-                    }
-                    else
-                    {
-                        Console.WriteLine((i + 1) + " - [ ] " + oneLineOfTodoList[0]);
-                    }
-                }
-            }
-            catch
-            {
-                Console.WriteLine("Unable to read file.");
-            }
-        }
+        
         public static void AddNewTask(string[] args)
         {
             if (args.Length == 2)
