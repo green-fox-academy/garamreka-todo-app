@@ -42,7 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Add_Tasks.cs" />
+    <Compile Include="Check_Tasks.cs" />
     <Compile Include="List_Tasks.cs" />
+    <Compile Include="Remove_Tasks.cs" />
     <Compile Include="TodoApp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -7,13 +7,11 @@ namespace ToDoApp
 {
     class Add_Tasks
     {
-        private static string path = @"../../Todolist.txt";
-
         public void AddNewTask(string[] args)
         {
             if (args.Length == 2)
             {
-                using (StreamWriter writer = File.AppendText(path))
+                using (StreamWriter writer = File.AppendText(List_Tasks.Path))
                 {
                     writer.WriteLine(args[1] + ";todo");
                 }

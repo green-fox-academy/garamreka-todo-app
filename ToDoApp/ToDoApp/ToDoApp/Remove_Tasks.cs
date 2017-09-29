@@ -8,8 +8,6 @@ namespace ToDoApp
 {
     class Remove_Tasks
     {
-        private static string path = @"../../Todolist.txt";
-
         public  void RemoveTask(string[] args)
         {
             if (args.Length == 2)

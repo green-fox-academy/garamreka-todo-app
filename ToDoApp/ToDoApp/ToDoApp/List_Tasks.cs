@@ -7,8 +7,20 @@ namespace ToDoApp
 {
     public class List_Tasks
     {
-        private static string path = @"../../Todolist.txt";
-        private static string[] contentOfTodoList = File.ReadAllLines(path);
+        private static string path;
+        private static string[] contentOfTodoList;
+
+        public static string Path
+        {
+            get { return path; }
+            set { path = @"../../Todolist.txt"; }
+        }
+
+        public static string[] ContentOfTodoList
+        {
+            get { return contentOfTodoList; }
+            set { contentOfTodoList = File.ReadAllLines(path); }
+        }
 
         public void ListTasks()
         {

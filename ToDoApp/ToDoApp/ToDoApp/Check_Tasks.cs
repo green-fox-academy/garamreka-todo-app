@@ -9,9 +9,6 @@ namespace ToDoApp
 {
     class Check_Tasks
     {
-        private static string path = @"../../Todolist.txt";
-        private static string[] contentOfTodoList = File.ReadAllLines(path);
-
         public void CheckTask(string[] args)
         {
             if (args.Length == 2)
@@ -20,17 +17,17 @@ namespace ToDoApp
                 {
                     int indexOfLine = int.Parse(args[1]);
 
-                    using (StreamWriter writer = new StreamWriter(path))
+                    using (StreamWriter writer = new StreamWriter(List_Tasks.Path))
                     {
-                        for (int i = 0; i < contentOfTodoList.Length; i++)
+                        for (int i = 0; i < List_Tasks.ContentOfTodoList.Length; i++)
                         {
                             if (i == indexOfLine - 1)
                             {
-                                writer.WriteLine(contentOfTodoList[i].Replace("todo", "done"));
+                                writer.WriteLine(List_Tasks.ContentOfTodoList[i].Replace("todo", "done"));
                             }
                             else
                             {
-                                writer.WriteLine(contentOfTodoList[i]);
+                                writer.WriteLine(List_Tasks.ContentOfTodoList[i]);
                             }
                         }
                     }

@@ -1,3 +1,5 @@
-Buy chocolate;done
-Refactor my code;done
-Dont panic;done
+Smile;done
+Introduce myself;done
+Tell agenda;done
+Tell hardest thing;todo
+Explain solution;todo
