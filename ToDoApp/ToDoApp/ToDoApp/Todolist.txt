@@ -1,5 +1,6 @@
 Smile;done
 Introduce myself;done
 Tell agenda;done
-Tell hardest thing;todo
-Explain solution;todo
+Tell hardest thing;done
+Explain solution;done
+Say thanks;done
